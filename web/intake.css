@@ -1,0 +1,26 @@
+:root{--paper:#E9EDF0;--ink:#16232B;--ink-2:#4A5A64;--rule:#C7CFD5;--red:#B8322F;--ok:#2E7D5B;--amber:#9A6B00;font-family:"IBM Plex Sans",system-ui,sans-serif}
+*{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-size:14px;line-height:1.45}
+main{max-width:760px;margin:0 auto;padding:28px 22px 60px}
+h1{font-size:22px;font-weight:600;margin:0 0 4px} .lead{color:var(--ink-2);margin:0 0 20px}
+nav.routes{display:flex;gap:8px;margin:0 0 22px;flex-wrap:wrap}
+nav.routes a{padding:7px 12px;border:1px solid var(--rule);border-radius:3px;color:var(--ink);text-decoration:none;background:#fff}
+nav.routes a[aria-current]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.badge{display:inline-block;padding:2px 8px;border-radius:3px;font-size:12px;font-weight:600;vertical-align:middle}
+.badge.est{background:#F3E5B8;color:var(--amber)} .badge.sur{background:#D3EADF;color:var(--ok)}
+fieldset{border:0;border-top:1px solid var(--rule);padding:16px 0 6px;margin:0 0 6px}
+legend{font-weight:600;padding:0 8px 0 0;font-size:15px}
+.hint{color:var(--ink-2);font-size:12.5px;margin:0 0 10px}
+label{display:block;margin:8px 0 4px}
+input[type=text],input[type=number],select{width:100%;padding:8px 10px;border:1px solid var(--rule);border-radius:3px;font:inherit;background:#fff}
+input[type=file]{font:inherit;font-size:13px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px} @media(max-width:560px){.row{grid-template-columns:1fr}}
+.choice{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0 4px} .choice label{margin:0;display:flex;gap:6px;align-items:center}
+.opt[hidden]{display:none}
+#plans{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center;margin-top:6px}
+button{font:inherit;padding:9px 16px;border:1px solid var(--ink);border-radius:3px;background:var(--ink);color:#fff;cursor:pointer}
+button.secondary{background:#fff;color:var(--ink)} button:disabled{opacity:.5;cursor:default}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+#result{margin-top:20px;padding:14px 16px;background:#fff;border:1px solid var(--rule);border-radius:3px}
+#result ol,#result ul{margin:6px 0 0;padding-left:18px} .bad{color:var(--red)} .ok{color:var(--ok)} .warn{color:var(--amber)}
+a{color:var(--ink)}
+.filled{background:#FFF8E1 !important}

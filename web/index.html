@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3D ULPIN viewer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cesium.com/downloads/cesiumjs/releases/1.119/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+<script src="https://cesium.com/downloads/cesiumjs/releases/1.119/Build/Cesium/Cesium.js"></script>
+<style>
+  :root{
+    --paper:#E9EDF0; --ink:#16232B; --ink-2:#4A5A64; --rule:#C7CFD5;
+    --red:#B8322F; --select:#F2C94C; --sand:#C9A66B; --ok:#2E7D5B;
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--ink);color:var(--ink)}
+  #cesium{position:absolute;inset:0}
+  .cesium-viewer-bottom,.cesium-viewer-toolbar,.cesium-viewer-animationContainer,.cesium-viewer-timelineContainer{display:none!important}
+  #panel{position:absolute;top:0;left:0;bottom:0;width:360px;max-width:100%;background:var(--paper);
+         padding:20px 22px;overflow-y:auto;display:flex;flex-direction:column;gap:18px;font-size:14px;line-height:1.45}
+  h1{font-size:15px;font-weight:600;margin:0;letter-spacing:.01em}
+  h1 small{display:block;font-weight:400;color:var(--ink-2);margin-top:2px}
+  .badge{display:inline-block;padding:1px 7px;border-radius:3px;font-size:11px;font-weight:600;vertical-align:middle}
+  .badge.est{background:#F3E5B8;color:#9A6B00} .badge.sur{background:#D3EADF;color:var(--ok)}
+  .facts{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;margin:0;border-top:1px solid var(--rule);padding-top:10px}
+  .facts dt{color:var(--ink-2)} .facts dd{margin:0;font-variant-numeric:tabular-nums}
+  .flag{color:var(--ink-2);font-size:12px}
+  #id{border-top:1px solid var(--rule);padding-top:12px}
+  #id .empty{color:var(--ink-2)}
+  .seg{display:flex;flex-wrap:wrap;gap:6px;align-items:flex-end}
+  .seg div{background:#fff;border:1px solid var(--rule);border-radius:3px;padding:6px 7px;text-align:center}
+  .seg div:first-child{flex-basis:100%}
+  .seg b{display:block;font-size:20px;font-weight:600;letter-spacing:.04em;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .seg div:first-child b{font-size:15px;letter-spacing:.06em}
+  .seg span{font-size:11px;color:var(--ink-2)}
+  .seg .check b{color:var(--ok)}
+  .meaning{margin:8px 0 0;font-weight:500}
+  label{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  input[type=range]{width:100%;accent-color:var(--ink)}
+  input[type=checkbox]{accent-color:var(--ink);width:16px;height:16px}
+  input[type=search]{width:100%;padding:8px 10px;border:1px solid var(--rule);border-radius:3px;font:inherit;background:#fff}
+  input:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  button{font:inherit;padding:7px 12px;border:1px solid var(--ink);border-radius:3px;background:#fff;color:var(--ink);cursor:pointer}
+  button[aria-pressed=true]{background:var(--ink);color:#fff}
+  .row{display:flex;gap:8px;flex-wrap:wrap}
+  #report{border-top:1px solid var(--rule);padding-top:12px}
+  #report .clean{color:var(--ok);font-weight:500}
+  #report .bad{color:var(--red);font-weight:500}
+  #report ul{margin:6px 0 0;padding-left:18px} #report li{margin:3px 0}
+  #report li button{padding:0;border:0;background:none;color:var(--red);text-decoration:underline;cursor:pointer}
+  .legend{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--ink-2)}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:2px;vertical-align:-2px;margin-right:4px}
+  @media (max-width:640px){#panel{top:auto;height:52%;width:100%;border-top:1px solid var(--rule)}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="cesium"></div>
+<aside id="panel" aria-label="Building and unit details">
+  <label for="pick" style="margin:0 0 6px;font-size:12px;color:var(--ink-2)">Building</label>
+  <select id="pick" aria-label="Choose a building" style="width:100%;padding:7px 8px;border:1px solid var(--rule);border-radius:3px;font:inherit;background:#fff;margin-bottom:10px"></select>
+  <h1 id="title">Loading building<small id="subtitle"></small></h1>
+  <dl class="facts" id="facts"></dl>
+
+  <section id="id"><p class="empty">Click any volume in the model to read its 3D ULPIN.</p></section>
+
+  <div>
+    <label for="floor">Show levels up to <b id="floorName">all</b></label>
+    <input id="floor" type="range" min="0" max="0" value="0" step="1">
+  </div>
+
+  <div class="row">
+    <button id="under" aria-pressed="false">Show underground</button>
+    <button id="reset">Reset view</button>
+  </div>
+
+  <form id="find" role="search"><input id="q" type="search" placeholder="Find a 3D ULPIN, e.g. …-B01-F02-U05-3" aria-label="Find a 3D ULPIN"></form>
+
+  <section id="report"><p>Checking…</p></section>
+
+  <div class="legend" id="legend"></div>
+  <p class="flag" id="source"></p>
+</aside>
+
+<script>
+const q = new URLSearchParams(location.search);
+const PID = q.get("building");
+const LEVEL_COLORS = ["#2F6F8F","#3A82A3","#4A95B5","#5FA8C5","#7ABBD3","#98CDE0","#B5DEEB","#D0ECF5"];
+const SAND = "#C9A66B", RED = "#B8322F", SELECT = "#F2C94C";
+
+Cesium.Ion.defaultAccessToken = undefined;
+const viewer = new Cesium.Viewer("cesium", {
+  // Free OpenStreetMap imagery, no Cesium ion token needed
+  baseLayer: new Cesium.ImageryLayer(new Cesium.OpenStreetMapImageryProvider({url:"https://tile.openstreetmap.org/"})),
+  baseLayerPicker:false, geocoder:false, homeButton:false, sceneModePicker:false,
+  navigationHelpButton:false, animation:false, timeline:false, fullscreenButton:false, infoBox:false, selectionIndicator:false,
+  contextOptions: { webgl: { preserveDrawingBuffer: true } },  // lets screenshots capture the canvas
+});
+viewer.scene.globe.translucency.enabled = true;
+viewer.scene.globe.translucency.frontFaceAlpha = 1;
+viewer.scene.screenSpaceCameraController.enableCollisionDetection = false;
+
+const $ = s => document.querySelector(s);
+const state = { units: [], levels: [], entities: new Map(), selected: null, findings: new Map(), bbox: null };
+
+function levelIndex(code){ return state.levels.findIndex(l => l.level_code === code); }
+function colorFor(p){
+  if (state.findings.has(p.ulpin)) return RED;
+  if (p.building_no === 0) return "#6B7280";
+  if (p.level_code.startsWith("B")) return SAND;
+  const above = state.levels.filter(l => !l.level_code.startsWith("B")).map(l => l.level_code);
+  return LEVEL_COLORS[above.indexOf(p.level_code) % LEVEL_COLORS.length];
+}
+
+async function load(){
+  const list = await (await fetch("/api/buildings")).json();
+  if (!list.length){ $("#title").textContent = "No building found. Run the pipeline first."; return; }
+  const b = list.find(x => x.pand_id === PID) || list[0];   // list is India first, newest first
+  $("#pick").innerHTML = list.map(x => `<option value="${x.pand_id}" ${x.pand_id === b.pand_id ? "selected" : ""}>${x.india ? "" : "[NL] "}${x.label}${x.pand_id.endsWith("-broken") ? " (broken demo)" : ""} · ${x.accuracy}</option>`).join("");
+  $("#pick").onchange = e => { location.search = "?building=" + encodeURIComponent(e.target.value); };
+  document.title = `${b.label} · 3D ULPIN`;
+  const [floors, units, report, meta] = await Promise.all([
+    fetch(`/api/buildings/${b.pand_id}/floors`).then(r=>r.json()),
+    fetch(`/api/buildings/${b.pand_id}/units`).then(r=>r.json()),
+    fetch(`/api/buildings/${b.pand_id}/report`).then(r=>r.json()),
+    fetch(`/api/buildings/${b.pand_id}/meta`).then(r=>r.json()),
+  ]);
+  state.levels = floors.features.map(f=>f.properties).sort((a,c)=>a.z_min-c.z_min);
+  state.units = units.features;
+  for (const f of report.findings) if (f.ulpin) state.findings.set(f.ulpin, [...(state.findings.get(f.ulpin)||[]), f]);
+
+  $("#title").firstChild.textContent = b.label !== b.pand_id ? `${b.label}` : `Building ${b.pand_id}`;
+  $("#subtitle").innerHTML = `<span class="badge ${meta.accuracy === 'estimated' ? 'est' : 'sur'}">${meta.accuracy}</span> ${b.year_built ? "Built " + b.year_built + ", " : ""}${b.roof_type || 'unknown'} roof`;
+  if (meta.assumed && meta.assumed.length) $("#source").textContent = "Assumed, not measured: " + meta.assumed.join("; ") + ".";
+  $("#facts").innerHTML = [
+    ["Height", `${b.height_m.toFixed(1)} m`],
+    ["Floors", `${state.levels.filter(l=>!l.level_code.startsWith("B")).length} above ground, ${state.levels.filter(l=>l.level_code.startsWith("B")).length} below`],
+    ["Registered units", b.units_official ?? "—"],
+    ["Volumes with an ID", units.features.length],
+    ["Footprint", `${Math.round(b.footprint_m2)} m²`],
+    ...(meta.admin ? [["Revenue village", `${meta.admin.village}, ${meta.admin.subdistrict}, ${meta.admin.district}`], ["Census codes", `${meta.admin.state_code} / ${meta.admin.district_code} / ${meta.admin.village_code}`]] : []),
+  ].map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join("");
+  if (!(meta.assumed && meta.assumed.length)) $("#source").textContent = `Floor count source: ${state.levels[0].floors_source.replace("_"," ")}.`;
+
+  let west=180,south=90,east=-180,north=-90;
+  state.units.forEach((f, i) => {
+    const p = f.properties;
+    if (!f.geometry) return;
+    // MultiPolygon: draw the largest part; a bad ring would stop Cesium's whole render loop
+    let ring = f.geometry.type === "MultiPolygon" ? f.geometry.coordinates.reduce((a, b) => (b[0].length > a[0].length ? b : a))[0] : f.geometry.coordinates[0];
+    if (!ring || ring.length < 4 || ring.some(([x, y]) => !isFinite(x) || !isFinite(y))) return;
+    for (const [x,y] of ring){ west=Math.min(west,x); east=Math.max(east,x); south=Math.min(south,y); north=Math.max(north,y); }
+    const e = viewer.entities.add({
+      id: `vol-${i}`,   // not the ULPIN: a broken dataset may legitimately contain duplicate IDs
+      polygon: { hierarchy: Cesium.Cartesian3.fromDegreesArray(ring.flat()), height: p.z_min, extrudedHeight: p.z_max,
+                 material: Cesium.Color.fromCssColorString(colorFor(p)).withAlpha(0.92), outline: true, outlineColor: Cesium.Color.fromCssColorString("#16232B").withAlpha(0.6) },
+      properties: p,
+    });
+    state.entities.set(p.ulpin, e);
+  });
+  state.bbox = Cesium.Rectangle.fromDegrees(west, south, east, north);
+  const above = state.levels.filter(l=>!l.level_code.startsWith("B"));
+  $("#floor").max = above.length; $("#floor").value = above.length;
+  $("#legend").innerHTML = above.map((l,i)=>`<span><i style="background:${LEVEL_COLORS[i%LEVEL_COLORS.length]}"></i>${l.level_code}</span>`).join("")
+    + `<span><i style="background:${SAND}"></i>parking</span><span><i style="background:#6B7280"></i>utility</span><span><i style="background:${RED}"></i>problem</span>`;
+  renderReport(report);
+  applyVisibility();
+  resetView();
+}
+
+function applyVisibility(){
+  const maxAbove = +$("#floor").value, under = $("#under").getAttribute("aria-pressed")==="true";
+  const above = state.levels.filter(l=>!l.level_code.startsWith("B")).map(l=>l.level_code);
+  $("#floorName").textContent = maxAbove === 0 ? "none" : above[maxAbove-1];
+  for (const [ulpin,e] of state.entities){
+    const c = e.properties.level_code.getValue();
+    e.show = c.startsWith("B") ? under : above.indexOf(c) < maxAbove;
+  }
+  viewer.scene.globe.translucency.frontFaceAlpha = under ? 0.35 : 1;
+}
+
+function select(ulpin){
+  if (state.selected){ const prev = state.entities.get(state.selected); prev.polygon.material = Cesium.Color.fromCssColorString(colorFor(prev.properties.getValue())).withAlpha(0.92); }
+  state.selected = ulpin;
+  const e = state.entities.get(ulpin);
+  if (!e){ $("#id").innerHTML = `<p class="empty">No volume has the ID ${ulpin}.</p>`; return; }
+  e.polygon.material = Cesium.Color.fromCssColorString(SELECT);
+  const p = e.properties.getValue();
+  const [parent, bld, lvl, unit, check] = ulpin.split("-");
+  const kind = {U:"flat",P:"parking slot",C:"common area",T:"utility corridor"}[unit[0]];
+  const lvlText = lvl==="G00" ? "on the ground floor" : lvl[0]==="F" ? `on floor ${+lvl.slice(1)}` : lvl[0]==="B" ? (bld==="B00" ? `${-p.z_max} to ${-p.z_min} m below ground` : `in basement ${+lvl.slice(1)}`) : lvl[0]==="R" ? "on the roof" : "in the air rights above";
+  const probs = state.findings.get(ulpin) || [];
+  $("#id").innerHTML = `
+    <div class="seg">
+      <div><b>${parent}</b><span>parcel ULPIN</span></div>
+      <div><b>${bld}</b><span>building</span></div>
+      <div><b>${lvl}</b><span>level</span></div>
+      <div><b>${unit}</b><span>unit</span></div>
+      <div class="check"><b>${check}</b><span>check</span></div>
+    </div>
+    <p class="meaning">${kind[0].toUpperCase()+kind.slice(1)} ${+unit.slice(1)}, ${lvlText}, ${bld==="B00" ? "under the parcel, no building" : "building " + (+bld.slice(1))}</p>
+    <dl class="facts">
+      <dt>Height range</dt><dd>${p.z_min} to ${p.z_max} m</dd>
+      <dt>Floor area</dt><dd>${p.area_m2} m²</dd>
+      <dt>Volume</dt><dd>${p.volume_m3} m³</dd>
+      <dt>Owner</dt><dd>${p.owner || "not linked yet"}</dd>${p.network_type ? `<dt>Network</dt><dd>${p.network_type}${p.operator ? ", " + p.operator : ""}</dd>` : ""}
+    </dl>
+    ${probs.length ? `<p class="bad" style="color:var(--red)">${probs.map(x=>x.check+": "+x.message).join("<br>")}</p>` : ""}`;
+}
+
+function renderReport(report){
+  const f = report.findings;
+  $("#report").innerHTML = f.length === 0
+    ? `<p class="clean">All ${report.units} volumes pass the 6 topology checks.</p>`
+    : `<p class="bad">${f.length} problem${f.length>1?"s":""} found</p><ul>${f.map(x=>`<li>${x.check}${x.ulpin?`: <button data-u="${x.ulpin}">${x.ulpin}</button>`:` on level ${x.level}`} — ${x.message}</li>`).join("")}</ul>`;
+  $("#report").querySelectorAll("button").forEach(b=>b.onclick=()=>{ select(b.dataset.u); viewer.flyTo(state.entities.get(b.dataset.u)); });
+}
+
+function resetView(){ viewer.zoomTo(viewer.entities, new Cesium.HeadingPitchRange(Cesium.Math.toRadians(30), Cesium.Math.toRadians(-35), 140)); }
+
+new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas).setInputAction(ev=>{
+  const picked = viewer.scene.pick(ev.position);
+  if (picked && picked.id && picked.id.properties) select(picked.id.properties.ulpin.getValue());
+}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+$("#floor").oninput = applyVisibility;
+$("#under").onclick = e => { e.target.setAttribute("aria-pressed", e.target.getAttribute("aria-pressed")!=="true"); e.target.textContent = e.target.getAttribute("aria-pressed")==="true" ? "Hide underground" : "Show underground"; applyVisibility(); };
+$("#reset").onclick = resetView;
+$("#find").onsubmit = e => { e.preventDefault(); const u = $("#q").value.trim().toUpperCase(); select(u); if (state.entities.get(u)) viewer.flyTo(state.entities.get(u)); };
+load();
+</script>
+</body>
+</html>

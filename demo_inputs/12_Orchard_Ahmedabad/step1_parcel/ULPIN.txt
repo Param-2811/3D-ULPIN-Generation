@@ -1,0 +1,13 @@
+PARENT ULPIN (14-digit, parcel):  24474930048216
+  = state 24 + district 474 + village 930048 (Jagatpur) + parcel seq 216
+  status: placeholder shaped like the official ULPIN; the real number is issued by DoLR via the state land-records system
+
+BUILDING:  Orchard  (building B01 on this parcel)
+VILLAGE:   Jagatpur  |  taluka Daskroi  |  district Ahmadabad  |  GUJARAT
+CENSUS CODES:  state 24  district 474  sub-district 03782  village 930048
+
+3D ULPINs this building will get (real check digits):
+  24474930048216-B01-G00-U01-7   flat 1, ground floor
+  24474930048216-B01-F02-U03-9   flat 3, floor 2
+  24474930048216-B01-B01-P05-6   parking slot 5, basement 1
+  24474930048216-B00-B01-T01-7   water main under the parcel, no building

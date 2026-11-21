@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "outline",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "A- Block", "osm_id": 1299977421, "source": "OpenStreetMap (ODbL), local extract", "parent_ulpin": "24474930062358", "parent_ulpin_status": "placeholder: state+district+village census code+parcel seq; DoLR issues the real one", "building_no": 1, "state": "GUJARAT", "district": "Ahmadabad", "subdistrict": "Sabarmati", "village": "Motera", "village_code": "930062" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.6030388, 23.1010053 ], [ 72.6032906, 23.1009366 ], [ 72.6032401, 23.1007816 ], [ 72.6031142, 23.1008095 ], [ 72.6029861, 23.1008389 ], [ 72.6030388, 23.1010053 ] ] ] } }
+]
+}

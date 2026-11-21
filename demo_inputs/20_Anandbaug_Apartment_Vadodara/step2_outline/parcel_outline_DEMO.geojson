@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24486802596812", "parcel_of": "Anandbaug Apartment", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Vadodara", "subdistrict": "Vadodara Rural", "village": "Vadodara (M Corp.)", "village_code": "802596" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 73.204369930617602, 22.27661322815413 ], [ 73.204324736948635, 22.276918284582941 ], [ 73.204652648151651, 22.276960364355464 ], [ 73.204697841136408, 22.276655307790598 ], [ 73.204369930617602, 22.27661322815413 ] ] ] } }
+]
+}

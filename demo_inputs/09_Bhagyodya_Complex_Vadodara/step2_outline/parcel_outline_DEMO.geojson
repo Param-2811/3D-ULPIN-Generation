@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24486930242150", "parcel_of": "Bhagyodya Complex", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Vadodara", "subdistrict": "Vadodara Rural", "village": "Danteshvar", "village_code": "930242" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 73.211810495934202, 22.276501105769167 ], [ 73.211480973892037, 22.277235689619225 ], [ 73.21167220717895, 22.277309996439552 ], [ 73.212001725690527, 22.276575410179841 ], [ 73.211810495934202, 22.276501105769167 ] ] ] } }
+]
+}

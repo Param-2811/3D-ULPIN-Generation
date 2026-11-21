@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "outline",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Anandbaug Apartment", "osm_id": 319986789, "source": "OpenStreetMap (ODbL), local extract", "parent_ulpin": "24486802596812", "parent_ulpin_status": "placeholder: state+district+village census code+parcel seq; DoLR issues the real one", "building_no": 1, "state": "GUJARAT", "district": "Vadodara", "subdistrict": "Vadodara Rural", "village": "Vadodara (M Corp.)", "village_code": "802596" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 73.2045853, 22.276858 ], [ 73.2046063, 22.2768316 ], [ 73.2046168, 22.2768002 ], [ 73.2046158, 22.2767674 ], [ 73.2046033, 22.2767367 ], [ 73.2045808, 22.2767114 ], [ 73.2045505, 22.2766943 ], [ 73.2045159, 22.2766872 ], [ 73.2044807, 22.2766908 ], [ 73.2044487, 22.2767048 ], [ 73.2044234, 22.2767277 ], [ 73.2044074, 22.276757 ], [ 73.2044026, 22.2767894 ], [ 73.2044094, 22.2768216 ], [ 73.2044271, 22.27685 ], [ 73.2044538, 22.2768715 ], [ 73.2044866, 22.2768838 ], [ 73.204522, 22.2768856 ], [ 73.2045561, 22.2768767 ], [ 73.2045853, 22.276858 ] ] ] } }
+]
+}

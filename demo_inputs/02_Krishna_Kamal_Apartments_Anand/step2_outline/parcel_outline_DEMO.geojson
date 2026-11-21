@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24482802562790", "parcel_of": "Krishna Kamal Apartments", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Anand", "subdistrict": "Anand Rural", "village": "Anand (M)", "village_code": "802562" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.967548501522046, 22.549048638574526 ], [ 72.967157534334959, 22.549051916837804 ], [ 72.967160714025809, 22.549379161891409 ], [ 72.967551682137014, 22.549375883688445 ], [ 72.967548501522046, 22.549048638574526 ] ] ] } }
+]
+}

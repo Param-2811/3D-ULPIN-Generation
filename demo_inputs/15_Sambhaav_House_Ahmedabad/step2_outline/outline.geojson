@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "outline",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Sambhaav House", "osm_id": 366478546, "source": "OpenStreetMap (ODbL), local extract", "parent_ulpin": "24474930057881", "parent_ulpin_status": "placeholder: state+district+village census code+parcel seq; DoLR issues the real one", "building_no": 1, "state": "GUJARAT", "district": "Ahmadabad", "subdistrict": "Daskroi", "village": "Bodakdev", "village_code": "930057" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.5177405, 23.0348175 ], [ 72.5179572, 23.0348109 ], [ 72.5179581, 23.0348344 ], [ 72.518086, 23.0348305 ], [ 72.5180816, 23.0347077 ], [ 72.5180525, 23.0347086 ], [ 72.5180488, 23.0346081 ], [ 72.518078, 23.0346072 ], [ 72.5180739, 23.0344926 ], [ 72.51795, 23.0344964 ], [ 72.5179488, 23.0344643 ], [ 72.5177281, 23.034471 ], [ 72.5177314, 23.0345633 ], [ 72.5177082, 23.034564 ], [ 72.5177092, 23.0345924 ], [ 72.5176979, 23.0345927 ], [ 72.5177015, 23.0346918 ], [ 72.5177128, 23.0346915 ], [ 72.5177138, 23.0347208 ], [ 72.517737, 23.0347201 ], [ 72.5177405, 23.0348175 ] ] ] } }
+]
+}

@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "outline",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Amul Heights", "osm_id": 1072176846, "source": "OpenStreetMap (ODbL), local extract", "parent_ulpin": "24482802562171", "parent_ulpin_status": "placeholder: state+district+village census code+parcel seq; DoLR issues the real one", "building_no": 1, "state": "GUJARAT", "district": "Anand", "subdistrict": "Anand Rural", "village": "Anand (M)", "village_code": "802562" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.9725461, 22.5469705 ], [ 72.9728169, 22.5471241 ], [ 72.9731801, 22.546654 ], [ 72.9732786, 22.5466844 ], [ 72.9736049, 22.5462674 ], [ 72.973252, 22.5460627 ], [ 72.9727944, 22.5461329 ], [ 72.9725399, 22.5464721 ], [ 72.9727821, 22.5466218 ], [ 72.9725461, 22.5469705 ] ] ] } }
+]
+}

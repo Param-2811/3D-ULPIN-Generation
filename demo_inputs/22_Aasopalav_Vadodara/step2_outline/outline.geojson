@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "outline",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Aasopalav", "osm_id": 442156395, "source": "OpenStreetMap (ODbL), local extract", "parent_ulpin": "24486930242162", "parent_ulpin_status": "placeholder: state+district+village census code+parcel seq; DoLR issues the real one", "building_no": 1, "state": "GUJARAT", "district": "Vadodara", "subdistrict": "Vadodara Rural", "village": "Danteshvar", "village_code": "930242" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 73.2114913, 22.2773863 ], [ 73.2115429, 22.2772372 ], [ 73.2117649, 22.277303 ], [ 73.2117133, 22.2774521 ], [ 73.2114913, 22.2773863 ] ] ] } }
+]
+}

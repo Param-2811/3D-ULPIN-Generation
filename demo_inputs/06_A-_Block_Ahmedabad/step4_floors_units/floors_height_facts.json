@@ -1,0 +1,38 @@
+{
+  "name": "A- Block",
+  "city": "ahmedabad",
+  "building_type": "apartments",
+  "lat": 23.100891,
+  "lon": 72.603137,
+  "footprint_m2_osm": 499,
+  "floors_osm": 5,
+  "height_m_osm": null,
+  "height_m_if_floors_x3": 15.0,
+  "placeholder_parent_ulpin": "24474930062358",
+  "placeholder_how": "state 24 + district 474 + village 930062 (Motera) + parcel seq 358",
+  "REAL": [
+    "outline (OpenStreetMap)",
+    "village and Census codes",
+    "DEM 30 m (Copernicus)",
+    "floor count (OpenStreetMap volunteers)"
+  ],
+  "NOT_AVAILABLE_FOR_INDIA_AT_ZERO_COST": [
+    "unit count (municipal approval, not open)",
+    "floor plans (no open Indian dataset)",
+    "owner (not open)",
+    "LiDAR point cloud (no open city LiDAR)",
+    "drone orthophoto for this building (OpenAerialMap has none here)",
+    "utility network (not open)",
+    "CORS control points (Survey of India, paid for private users)"
+  ],
+  "STAND_INS_IN_THIS_FOLDER": [
+    "step6_owner_utilities_cors/utilities_DEMO.geojson (synthetic lines)",
+    "step6_owner_utilities_cors/cors_points_DEMO.csv (synthetic, 0.4 m E / 0.2 m N offset on real corners)",
+    "step2_outline/parcel_outline_DEMO.geojson (parcel = outline + 6 m, no open parcel map)",
+    "floor plans: see step5_floor_plans/README.txt"
+  ],
+  "dem_min_m": 0.0,
+  "dem_max_m": 68.89403533935547,
+  "dem_pixels": 961,
+  "resolution_m": 30
+}

@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24474930019560", "parcel_of": "balaji", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Ahmadabad", "subdistrict": "Sabarmati", "village": "Asarva", "village_code": "930019" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.615842997124275, 23.055997680098542 ], [ 72.615525370394735, 23.055985862925002 ], [ 72.615515196449678, 23.056220032902232 ], [ 72.615832823724574, 23.056231850141891 ], [ 72.615842997124275, 23.055997680098542 ] ] ] } }
+]
+}

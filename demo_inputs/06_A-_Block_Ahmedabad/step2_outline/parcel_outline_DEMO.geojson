@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24474930062358", "parcel_of": "A- Block", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Ahmadabad", "subdistrict": "Sabarmati", "village": "Motera", "village_code": "930062" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.602999105063574, 23.101072596291136 ], [ 72.60336365186707, 23.10097313496091 ], [ 72.603276763206921, 23.10070061736819 ], [ 72.602912217115218, 23.100800078556915 ], [ 72.602999105063574, 23.101072596291136 ] ] ] } }
+]
+}

@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24486930242162", "parcel_of": "Aasopalav", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Vadodara", "subdistrict": "Vadodara Rural", "village": "Danteshvar", "village_code": "930242" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 73.211838220971117, 22.277267867897571 ], [ 73.211504385945204, 22.277168920766098 ], [ 73.211417978960455, 22.277421431962239 ], [ 73.211751819005244, 22.277520381351685 ], [ 73.211838220971117, 22.277267867897571 ] ] ] } }
+]
+}

@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24474511689223", "parcel_of": "Someshwar Residency", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Ahmadabad", "subdistrict": "Daskroi", "village": "Ghuma (OG)", "village_code": "511689" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.454742974173797, 23.036246470863151 ], [ 72.454789490121527, 23.035938984477653 ], [ 72.454482222862225, 23.035899167128122 ], [ 72.454435705125533, 23.036206653564523 ], [ 72.454742974173797, 23.036246470863151 ] ] ] } }
+]
+}

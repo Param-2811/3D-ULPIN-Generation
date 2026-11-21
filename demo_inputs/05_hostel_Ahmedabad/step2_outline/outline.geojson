@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "outline",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "hostel", "osm_id": 374254677, "source": "OpenStreetMap (ODbL), local extract", "parent_ulpin": "24474930074700", "parent_ulpin_status": "placeholder: state+district+village census code+parcel seq; DoLR issues the real one", "building_no": 1, "state": "GUJARAT", "district": "Ahmadabad", "subdistrict": "Sabarmati", "village": "Vastrapur", "village_code": "930074" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.5456148, 23.0428437 ], [ 72.5456068, 23.0429054 ], [ 72.5458545, 23.0429145 ], [ 72.545867, 23.0428659 ], [ 72.5459313, 23.0428659 ], [ 72.5459287, 23.042782 ], [ 72.5458455, 23.0427894 ], [ 72.5458536, 23.0426783 ], [ 72.5456363, 23.0426931 ], [ 72.5456283, 23.0427721 ], [ 72.5455397, 23.0427672 ], [ 72.5455451, 23.0428388 ], [ 72.5456148, 23.0428437 ] ] ] } }
+]
+}

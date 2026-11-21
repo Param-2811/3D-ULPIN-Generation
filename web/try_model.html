@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Try the floor-plan model</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#E9EDF0;--ink:#16232B;--ink-2:#4A5A64;--rule:#C7CFD5;--red:#B8322F;--ok:#2E7D5B;font-family:"IBM Plex Sans",system-ui,sans-serif}
+  *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-size:14px;line-height:1.45}
+  main{max-width:960px;margin:0 auto;padding:28px 22px 60px}
+  h1{font-size:22px;font-weight:600;margin:0 0 4px} .lead{color:var(--ink-2);margin:0 0 18px}
+  .bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+  input[type=range]{width:160px;accent-color:var(--ink)}
+  button{font:inherit;padding:8px 14px;border:1px solid var(--ink);border-radius:3px;background:var(--ink);color:#fff;cursor:pointer}
+  canvas{max-width:100%;background:#fff;border:1px solid var(--rule);border-radius:3px}
+  #out{margin:10px 0 0;font-weight:500} .muted{color:var(--ink-2);font-size:12.5px}
+  a{color:var(--ink)}
+</style>
+</head>
+<body>
+<main>
+  <h1>Try the floor-plan model</h1>
+  <p class="lead">Upload any floor plan image. The model draws an outline around each apartment it finds. Nothing is stored. Trained on 4,569 multi-apartment plans (MSD); it works best on clean wall drawings like those.</p>
+  <div class="bar">
+    <input id="file" type="file" accept="image/*">
+    <label>Confidence <span id="cv">0.25</span> <input id="conf" type="range" min="0.05" max="0.8" step="0.05" value="0.25"></label>
+    <button id="run">Find apartments</button>
+    <a href="/submit.html">Register a building</a> · <a href="/">Viewer</a>
+  </div>
+  <canvas id="c" width="800" height="500"></canvas>
+  <p id="out"></p>
+  <p class="muted">Sample plans that the model has never seen: <code>data/processed/msd_yolo_v3/images/val/5848.png</code>, <code>41005.png</code>, <code>41458.png</code>.</p>
+</main>
+<script>
+const $ = s => document.querySelector(s), cv = $('#c'), ctx = cv.getContext('2d');
+let img = null;
+$('#conf').oninput = e => $('#cv').textContent = e.target.value;
+$('#file').onchange = e => { const f = e.target.files[0]; if (!f) return; img = new Image(); img.onload = () => { cv.width = img.width; cv.height = img.height; ctx.drawImage(img, 0, 0); $('#out').textContent = ''; }; img.src = URL.createObjectURL(f); };
+$('#run').onclick = async () => {
+  const f = $('#file').files[0]; if (!f) { $('#out').textContent = 'Choose an image first.'; return; }
+  const fd = new FormData(); fd.append('image', f); fd.append('conf', $('#conf').value);
+  $('#out').textContent = 'Running…';
+  const r = await fetch('/api/plan_preview', { method: 'POST', body: fd }); const j = await r.json();
+  if (!r.ok) { $('#out').textContent = j.detail; return; }
+  ctx.drawImage(img, 0, 0);
+  const cols = ['#B8322F', '#2F6F8F', '#2E7D5B', '#C9A66B', '#7A4E9E', '#D97706'];
+  j.apartments.forEach((a, i) => {
+    ctx.beginPath(); a.points.forEach(([x, y], k) => k ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.closePath();
+    ctx.fillStyle = cols[i % cols.length] + '55'; ctx.fill(); ctx.strokeStyle = cols[i % cols.length]; ctx.lineWidth = 2; ctx.stroke();
+    const [x, y] = a.points[0]; ctx.fillStyle = cols[i % cols.length]; ctx.font = '600 14px IBM Plex Sans, sans-serif'; ctx.fillText(`U${String(i + 1).padStart(2, '0')} ${(a.conf * 100).toFixed(0)}%`, x + 4, y + 14);
+  });
+  $('#out').textContent = `${j.apartments.length} apartment${j.apartments.length === 1 ? '' : 's'} found. Each would get its own unit code (U01, U02, …) when registered.`;
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24486930229127", "parcel_of": "Income Tax Tower", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Vadodara", "subdistrict": "Vadodara Rural", "village": "Jetalpur", "village_code": "930229" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 73.160033707928065, 22.310817642852847 ], [ 73.160450211372293, 22.310617043559652 ], [ 73.160243326682277, 22.310245142783732 ], [ 73.159826824129411, 22.310445741608657 ], [ 73.160033707928065, 22.310817642852847 ] ] ] } }
+]
+}

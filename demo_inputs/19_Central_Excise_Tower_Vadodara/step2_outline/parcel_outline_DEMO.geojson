@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24486930229308", "parcel_of": "Central Excise Tower", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Vadodara", "subdistrict": "Vadodara Rural", "village": "Jetalpur", "village_code": "930229" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 73.160305823400421, 22.310551757130369 ], [ 73.15987762772977, 22.310735618769975 ], [ 73.16006259203688, 22.311108567623393 ], [ 73.160490788679766, 22.310924705563718 ], [ 73.160305823400421, 22.310551757130369 ] ] ] } }
+]
+}

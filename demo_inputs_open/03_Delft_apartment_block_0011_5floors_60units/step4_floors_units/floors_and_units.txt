@@ -1,0 +1,3 @@
+Floors above ground: 5   (official register, BAG/3DBAG)
+Basement levels: 0
+Number of units: 60   (official address register, BAG)

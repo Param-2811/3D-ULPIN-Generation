@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24474930071663", "parcel_of": "Centre Point Towers", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Ahmadabad", "subdistrict": "Sabarmati", "village": "Chhanavad", "village_code": "930071" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.554676317247143, 23.022368274247381 ], [ 72.555591169235768, 23.022571818778012 ], [ 72.555698437668383, 23.022158749998312 ], [ 72.55478358818506, 23.021955206305009 ], [ 72.554676317247143, 23.022368274247381 ] ] ] } }
+]
+}

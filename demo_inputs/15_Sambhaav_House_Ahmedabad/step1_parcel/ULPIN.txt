@@ -1,0 +1,13 @@
+PARENT ULPIN (14-digit, parcel):  24474930057881
+  = state 24 + district 474 + village 930057 (Bodakdev) + parcel seq 881
+  status: placeholder shaped like the official ULPIN; the real number is issued by DoLR via the state land-records system
+
+BUILDING:  Sambhaav House  (building B01 on this parcel)
+VILLAGE:   Bodakdev  |  taluka Daskroi  |  district Ahmadabad  |  GUJARAT
+CENSUS CODES:  state 24  district 474  sub-district 03782  village 930057
+
+3D ULPINs this building will get (real check digits):
+  24474930057881-B01-G00-U01-6   flat 1, ground floor
+  24474930057881-B01-F02-U03-8   flat 3, floor 2
+  24474930057881-B01-B01-P05-5   parking slot 5, basement 1
+  24474930057881-B00-B01-T01-6   water main under the parcel, no building

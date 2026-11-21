@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "outline",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Shrinivas Appartment", "osm_id": 584631598, "source": "OpenStreetMap (ODbL), local extract", "parent_ulpin": "24474930028195", "parent_ulpin_status": "placeholder: state+district+village census code+parcel seq; DoLR issues the real one", "building_no": 1, "state": "GUJARAT", "district": "Ahmadabad", "subdistrict": "Sabarmati", "village": "Khokhara-Mehmadavad", "village_code": "930028" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.6155014, 22.9927244 ], [ 72.6154772, 22.9925713 ], [ 72.6156569, 22.9925367 ], [ 72.6156864, 22.9926947 ], [ 72.6155014, 22.9927244 ] ] ] } }
+]
+}

@@ -1,0 +1,12 @@
+{
+  "state": "GUJARAT",
+  "state_code": "24",
+  "district": "Anand",
+  "district_code": "482",
+  "subdistrict": "Anand Rural",
+  "subdistrict_code": "03864",
+  "village": "Anand (M)",
+  "village_code": "802562",
+  "village_lgd": 802562,
+  "source": "Census 2011 codes via datta07/INDIAN-SHAPEFILES (2019 boundaries)"
+}

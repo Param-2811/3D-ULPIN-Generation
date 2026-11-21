@@ -1,0 +1,12 @@
+{
+  "state": "GUJARAT",
+  "state_code": "24",
+  "district": "Vadodara",
+  "district_code": "486",
+  "subdistrict": "Vadodara Rural",
+  "subdistrict_code": "03898",
+  "village": "Danteshvar",
+  "village_code": "930242",
+  "village_lgd": 930242,
+  "source": "Census 2011 codes via datta07/INDIAN-SHAPEFILES (2019 boundaries)"
+}

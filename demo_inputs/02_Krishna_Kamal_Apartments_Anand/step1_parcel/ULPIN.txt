@@ -1,0 +1,13 @@
+PARENT ULPIN (14-digit, parcel):  24482802562790
+  = state 24 + district 482 + village 802562 (Anand (M)) + parcel seq 790
+  status: placeholder shaped like the official ULPIN; the real number is issued by DoLR via the state land-records system
+
+BUILDING:  Krishna Kamal Apartments  (building B01 on this parcel)
+VILLAGE:   Anand (M)  |  taluka Anand Rural  |  district Anand  |  GUJARAT
+CENSUS CODES:  state 24  district 482  sub-district 03864  village 802562
+
+3D ULPINs this building will get (real check digits):
+  24482802562790-B01-G00-U01-8   flat 1, ground floor
+  24482802562790-B01-F02-U03-0   flat 3, floor 2
+  24482802562790-B01-B01-P05-7   parking slot 5, basement 1
+  24482802562790-B00-B01-T01-8   water main under the parcel, no building

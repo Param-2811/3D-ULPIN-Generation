@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24486519849555", "parcel_of": "LnT residential", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Vadodara", "subdistrict": "Vadodara Rural", "village": "Ankhol", "village_code": "519849" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 73.257811643802455, 22.309876447254304 ], [ 73.257871961255503, 22.310477136332782 ], [ 73.25831044541593, 22.310439015153932 ], [ 73.258250126078053, 22.309838326116672 ], [ 73.257811643802455, 22.309876447254304 ] ] ] } }
+]
+}

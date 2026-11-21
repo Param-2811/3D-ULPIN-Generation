@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "outline",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "LnT residential", "osm_id": 1160169273, "source": "OpenStreetMap (ODbL), local extract", "parent_ulpin": "24486519849555", "parent_ulpin_status": "placeholder: state+district+village census code+parcel seq; DoLR issues the real one", "building_no": 1, "state": "GUJARAT", "district": "Vadodara", "subdistrict": "Vadodara Rural", "village": "Ankhol", "village_code": "519849" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 73.2580744, 22.3104021 ], [ 73.2581557, 22.3103968 ], [ 73.2581501, 22.310323 ], [ 73.2582363, 22.3103174 ], [ 73.2582297, 22.3102304 ], [ 73.2581573, 22.3102351 ], [ 73.2581465, 22.3100918 ], [ 73.2580691, 22.3100968 ], [ 73.2580673, 22.3100735 ], [ 73.2581475, 22.3100683 ], [ 73.2581404, 22.3099752 ], [ 73.2580957, 22.3099781 ], [ 73.2580905, 22.3099098 ], [ 73.2580119, 22.3099148 ], [ 73.2580148, 22.3099526 ], [ 73.2578787, 22.3099618 ], [ 73.2578981, 22.310155 ], [ 73.2580155, 22.3101488 ], [ 73.2580205, 22.310215 ], [ 73.25806, 22.3102125 ], [ 73.2580744, 22.3104021 ] ] ] } }
+]
+}

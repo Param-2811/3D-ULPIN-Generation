@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24474930057881", "parcel_of": "Sambhaav House", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Ahmadabad", "subdistrict": "Daskroi", "village": "Bodakdev", "village_code": "930057" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.517650179575512, 23.034897975133514 ], [ 72.51814642309634, 23.034882844040123 ], [ 72.518129397207389, 23.034404568930793 ], [ 72.517633155367648, 23.034419700360544 ], [ 72.517650179575512, 23.034897975133514 ] ] ] } }
+]
+}

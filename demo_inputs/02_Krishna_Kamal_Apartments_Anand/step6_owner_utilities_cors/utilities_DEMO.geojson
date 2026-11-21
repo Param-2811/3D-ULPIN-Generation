@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "utilities_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "network_type": "water", "depth_m": 1.2, "diameter_m": 0.3, "operator": "municipal water (DEMO, not real)" }, "geometry": { "type": "LineString", "coordinates": [ [ 72.967098202414533, 22.549210657870276 ], [ 72.967610997431706, 22.54921714058462 ] ] } },
+{ "type": "Feature", "properties": { "network_type": "sewer", "depth_m": 2.8, "diameter_m": 0.6, "operator": "municipal sewer (DEMO, not real)" }, "geometry": { "type": "LineString", "coordinates": [ [ 72.967357832788949, 22.548993261357136 ], [ 72.967351366970135, 22.549434537499547 ] ] } }
+]
+}

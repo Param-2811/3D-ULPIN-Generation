@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24486930231822", "parcel_of": "Haverest Residency", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Vadodara", "subdistrict": "Vadodara Rural", "village": "Gotri", "village_code": "930231" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 73.135338527757668, 22.326420776035558 ], [ 73.135110830526244, 22.32751563322541 ], [ 73.135846757939703, 22.32764810990826 ], [ 73.136074452369414, 22.326553252115747 ], [ 73.135338527757668, 22.326420776035558 ] ] ] } }
+]
+}

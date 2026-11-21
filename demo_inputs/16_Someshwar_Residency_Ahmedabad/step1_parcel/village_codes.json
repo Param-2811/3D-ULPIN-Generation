@@ -1,0 +1,12 @@
+{
+  "state": "GUJARAT",
+  "state_code": "24",
+  "district": "Ahmadabad",
+  "district_code": "474",
+  "subdistrict": "Daskroi",
+  "subdistrict_code": "03782",
+  "village": "Ghuma (OG)",
+  "village_code": "511689",
+  "village_lgd": 511689,
+  "source": "Census 2011 codes via datta07/INDIAN-SHAPEFILES (2019 boundaries)"
+}

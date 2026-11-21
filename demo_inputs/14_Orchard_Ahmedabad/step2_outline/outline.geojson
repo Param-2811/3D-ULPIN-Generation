@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "outline",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Orchard", "osm_id": 1018475006, "source": "OpenStreetMap (ODbL), local extract", "parent_ulpin": "24474930048850", "parent_ulpin_status": "placeholder: state+district+village census code+parcel seq; DoLR issues the real one", "building_no": 1, "state": "GUJARAT", "district": "Ahmadabad", "subdistrict": "Daskroi", "village": "Jagatpur", "village_code": "930048" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.5540867, 23.114436 ], [ 72.5543447, 23.1144207 ], [ 72.5543158, 23.1141192 ], [ 72.5540594, 23.1141123 ], [ 72.5540867, 23.114436 ] ] ] } }
+]
+}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Register a building</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="intake.css">
+<style>
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px} @media(max-width:600px){.cards{grid-template-columns:1fr}}
+  .card{display:block;background:#fff;border:1px solid var(--rule);border-radius:3px;padding:18px 20px;text-decoration:none;color:var(--ink)}
+  .card:hover{border-color:var(--ink)} .card h2{font-size:18px;margin:0 0 6px} .card p{margin:0 0 10px;color:var(--ink-2)}
+  .card ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:13px}
+</style>
+</head>
+<body>
+<main>
+  <nav class="routes"><a href="try_model.html">Try the model</a><a href="/">3D viewer</a></nav>
+  <h1>Register a building</h1>
+  <p class="lead">Two routes into the same pipeline. Both give every flat a 3D ULPIN; they differ in what the record can be trusted for.</p>
+  <div class="cards">
+    <a class="card" href="from-map.html">
+      <h2>From map <span class="badge est">estimated</span></h2>
+      <p>Click a building. Height, floors and unit count come from online data or are assumed, each one labelled.</p>
+      <ul><li>nothing to type</li><li>seconds</li><li>good for "show me my building"</li><li>record marked estimated</li></ul>
+    </a>
+    <a class="card" href="manual.html">
+      <h2>Manual <span class="badge sur">surveyed</span></h2>
+      <p>Every value from the officer, the approved plan, a drone or LiDAR survey, and floor-plan images. Nothing guessed.</p>
+      <ul><li>refuses to run with gaps</li><li>height measured from survey files</li><li>flats drawn from plans</li><li>record marked surveyed</li></ul>
+    </a>
+  </div>
+</main>
+</body>
+</html>

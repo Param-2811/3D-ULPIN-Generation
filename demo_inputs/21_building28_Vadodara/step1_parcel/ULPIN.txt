@@ -1,0 +1,13 @@
+PARENT ULPIN (14-digit, parcel):  24486519917687
+  = state 24 + district 486 + village 519917 (Bapod (OG)) + parcel seq 687
+  status: placeholder shaped like the official ULPIN; the real number is issued by DoLR via the state land-records system
+
+BUILDING:  building28  (building B01 on this parcel)
+VILLAGE:   Bapod (OG)  |  taluka Vadodara Rural  |  district Vadodara  |  GUJARAT
+CENSUS CODES:  state 24  district 486  sub-district 03898  village 519917
+
+3D ULPINs this building will get (real check digits):
+  24486519917687-B01-G00-U01-4   flat 1, ground floor
+  24486519917687-B01-F02-U03-6   flat 3, floor 2
+  24486519917687-B01-B01-P05-3   parking slot 5, basement 1
+  24486519917687-B00-B01-T01-4   water main under the parcel, no building

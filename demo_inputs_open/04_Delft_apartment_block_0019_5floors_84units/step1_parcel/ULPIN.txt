@@ -1,0 +1,15 @@
+STEP 1 ON THE FORM, type exactly these two values:
+
+  Existing 14-digit ULPIN:        20624000002177
+  Building number on the parcel:  1
+
+  (the ULPIN is derived from the real cadastral parcel: Delft section O parcel 2177 (Kadaster id 22120217770000);
+   the parcel number inside it is NOT the building number)
+  (source: Kadaster open cadastral map via PDOK; 14-digit form mirrors India's ULPIN)
+
+BUILDING: BAG 0503100000000019, 5 floors (official), 84 registered units, 13.9 m (laser-measured)
+
+3D ULPINs this building gets:
+  20624000002177-B01-G00-U01-4   flat 1, ground floor
+  20624000002177-B01-F02-U03-6   flat 3, floor 2
+  20624000002177-B01-B01-P05-3   parking slot 5, basement 1

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual: surveyed building</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="intake.css">
+</head>
+<body>
+<main>
+  <nav class="routes"><a href="from-map.html">From map</a><a href="manual.html" aria-current="page">Manual</a><a href="try_model.html">Try the model</a><a href="/">3D viewer</a></nav>
+  <h1>Manual <span class="badge sur">surveyed</span></h1>
+  <p class="lead">Every value comes from the officer, the approved plan, or a survey file. Nothing is guessed: if something is missing, the form stops and says what. The record it produces is marked <b>surveyed</b>.</p>
+
+  <form id="f">
+    <fieldset>
+      <legend>1. The parcel</legend>
+      <div class="row">
+        <div><label for="parent">Existing 14-digit ULPIN</label><input id="parent" name="parent_ulpin" type="text" required pattern="\d{14}" placeholder="27021500123456" inputmode="numeric"></div>
+        <div><label for="bno">Building number on the parcel</label><input id="bno" name="building_no" type="number" min="1" max="99" value="1" required></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>2. Building outline</legend>
+      <p class="hint">From the cadastral map (BhuNaksha export) or a drone orthophoto traced in GIS. For the Dutch demo building, the register ID fetches outline, height, floors and units in one go.</p>
+      <div class="choice">
+        <label><input type="radio" name="fp_mode" value="geojson" checked> Upload outline (GeoJSON)</label>
+        <label><input type="radio" name="fp_mode" value="ortho"> Extract from drone orthophoto (AI)</label>
+        <label><input type="radio" name="fp_mode" value="bag"> Dutch register ID (demo)</label>
+      </div>
+      <div class="opt" data-for="fp_mode:geojson"><input name="footprint" type="file" accept=".geojson,.json"></div>
+      <div class="opt" data-for="fp_mode:ortho" hidden>
+        <p class="hint">Georeferenced GeoTIFF from a drone survey. The Segment Anything Model traces the roof under the point you give; corners are squared. Recorded as AI-traced, not surveyed.</p>
+        <input name="ortho" type="file" accept=".tif,.tiff">
+        <div class="row" style="margin-top:6px"><input name="ortho_lon" type="number" step="0.00001" placeholder="longitude inside the roof, e.g. 4.34612"><input name="ortho_lat" type="number" step="0.00001" placeholder="latitude, e.g. 51.99817"></div>
+      </div>
+      <div class="opt" data-for="fp_mode:bag" hidden><input name="bag_id" type="text" placeholder="0503100000000071" pattern="\d{16}"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>3. Height, measured</legend>
+      <p class="hint">Survey data is measured directly: roof points minus ground points, no model.</p>
+      <div class="choice">
+        <label><input type="radio" name="h_mode" value="number" checked> From the approved plan (metres)</label>
+        <label><input type="radio" name="h_mode" value="dsm"> Drone elevation (DSM + DTM GeoTIFF)</label>
+        <label><input type="radio" name="h_mode" value="las"> LiDAR point cloud (LAS / LAZ)</label>
+        <label><input type="radio" name="h_mode" value="register"> From the register (demo)</label>
+      </div>
+      <div class="opt" data-for="h_mode:number"><input name="height_m" type="number" step="0.1" min="2" placeholder="14.0"></div>
+      <div class="opt" data-for="h_mode:dsm" hidden><label>Surface model (DSM)</label><input name="dsm" type="file" accept=".tif,.tiff"><label>Terrain model (DTM)</label><input name="dtm" type="file" accept=".tif,.tiff"></div>
+      <div class="opt" data-for="h_mode:las" hidden><input name="las" type="file" accept=".las,.laz"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>4. Floors and units, from the approved plan</legend>
+      <div class="row">
+        <div><label for="floors">Floors above ground</label><input id="floors" name="floors_official" type="number" min="1" max="99"></div>
+        <div><label for="base">Basement levels</label><input id="base" name="basements" type="number" min="0" max="9" value="0"></div>
+      </div>
+      <label for="units">Number of units <span class="hint">(from the plan or society register; not needed if floor plans are uploaded)</span></label>
+      <input id="units" name="units_official" type="number" min="1">
+    </fieldset>
+
+    <fieldset>
+      <legend>5. Floor plans</legend>
+      <p class="hint">One image per floor. The model draws each flat; without plans, flats are equal strips and the result says so.</p>
+      <div id="plans"></div>
+      <button type="button" class="secondary" id="addplan" style="margin-top:8px">Add a floor plan</button>
+    </fieldset>
+
+
+    <fieldset>
+      <legend>6. Ownership and underground utilities</legend>
+      <label for="owner">Owner or society name <span class="hint">(recorded as an LADM ownership right on every volume; per-flat owners can be attached later by ID)</span></label>
+      <input id="owner" name="owner" type="text" placeholder="e.g. Narayan Co-operative Housing Society">
+      <label>Underground utilities crossing the parcel <span class="hint">(GeoJSON lines with network_type, depth_m, diameter_m; each becomes a T-coded volume under building B00)</span></label>
+      <input name="utilities" type="file" accept=".geojson,.json">
+      <label>GNSS / CORS control points <span class="hint">(CSV: name, lat, lon from a Survey of India CORS-corrected receiver; shifts the outline onto surveyed positions)</span></label>
+      <input name="gnss" type="file" accept=".csv">
+    </fieldset>
+    <div style="margin-top:18px"><button type="submit">Generate surveyed 3D ULPINs</button></div>
+  </form>
+  <section id="result" hidden aria-live="polite"></section>
+</main>
+<script src="intake.js"></script>
+<script>
+$('#f').onsubmit = e => { e.preventDefault(); submitForm(e.target, 'manual'); };
+</script>
+</body>
+</html>

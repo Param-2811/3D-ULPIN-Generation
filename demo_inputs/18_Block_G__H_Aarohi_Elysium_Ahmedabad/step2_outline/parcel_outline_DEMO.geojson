@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24474511685558", "parcel_of": "Block G / H, Aarohi Elysium", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Ahmadabad", "subdistrict": "Daskroi", "village": "Bopal (CT)", "village_code": "511685" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.47135853071606, 23.015259810114649 ], [ 72.471476203877117, 23.014944085815248 ], [ 72.470968074761444, 23.014781812993359 ], [ 72.470850400635257, 23.01509753682749 ], [ 72.47135853071606, 23.015259810114649 ] ] ] } }
+]
+}

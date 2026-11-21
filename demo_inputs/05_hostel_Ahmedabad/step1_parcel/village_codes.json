@@ -1,0 +1,12 @@
+{
+  "state": "GUJARAT",
+  "state_code": "24",
+  "district": "Ahmadabad",
+  "district_code": "474",
+  "subdistrict": "Sabarmati",
+  "subdistrict_code": "03781",
+  "village": "Vastrapur",
+  "village_code": "930074",
+  "village_lgd": 930074,
+  "source": "Census 2011 codes via datta07/INDIAN-SHAPEFILES (2019 boundaries)"
+}

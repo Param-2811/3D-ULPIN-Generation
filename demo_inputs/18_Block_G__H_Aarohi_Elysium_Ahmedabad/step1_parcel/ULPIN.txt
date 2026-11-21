@@ -1,0 +1,13 @@
+PARENT ULPIN (14-digit, parcel):  24474511685558
+  = state 24 + district 474 + village 511685 (Bopal (CT)) + parcel seq 558
+  status: placeholder shaped like the official ULPIN; the real number is issued by DoLR via the state land-records system
+
+BUILDING:  Block G / H, Aarohi Elysium  (building B01 on this parcel)
+VILLAGE:   Bopal (CT)  |  taluka Daskroi  |  district Ahmadabad  |  GUJARAT
+CENSUS CODES:  state 24  district 474  sub-district 03782  village 511685
+
+3D ULPINs this building will get (real check digits):
+  24474511685558-B01-G00-U01-8   flat 1, ground floor
+  24474511685558-B01-F02-U03-0   flat 3, floor 2
+  24474511685558-B01-B01-P05-7   parking slot 5, basement 1
+  24474511685558-B00-B01-T01-8   water main under the parcel, no building

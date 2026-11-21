@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From map: estimated building</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="intake.css">
+</head>
+<body>
+<main>
+  <nav class="routes"><a href="from-map.html" aria-current="page">From map</a><a href="manual.html">Manual</a><a href="try_model.html">Try the model</a><a href="/">3D viewer</a></nav>
+  <h1>From map <span class="badge est">estimated</span></h1>
+  <p class="lead">Pick a building. Everything else is filled from online data and labelled as an estimate. Fast, rough, nothing to type. The record it produces is marked <b>estimated</b> until a surveyed one replaces it.</p>
+
+  <form id="f">
+    <fieldset>
+      <legend>1. Pick the building</legend>
+      <div class="row" style="margin-bottom:8px"><input id="q" type="text" placeholder="Search: Narayan apartments Anand, or an area name"><button type="button" class="secondary" id="search">Search</button></div>
+      <div id="hits" class="hint"></div>
+      <div id="map" style="height:340px;border:1px solid var(--rule);border-radius:3px"></div>
+      <p class="hint" id="picked">Click a building. Anand, Ahmedabad and Vadodara answer instantly from a local copy of OpenStreetMap; other places go online.</p>
+      <input type="hidden" name="footprint_json" id="footprint_json">
+      <input type="hidden" name="source_note" id="source_note">
+      <input type="hidden" name="height_label" id="height_label">
+      <input type="hidden" name="floors_label" id="floors_label">
+      <input type="hidden" name="units_label" id="units_label">
+      <input type="hidden" name="admin_json" id="admin_json">
+    </fieldset>
+
+    <fieldset>
+      <legend>2. What the map gave, and what was assumed</legend>
+      <p class="hint">Yellow boxes were filled automatically. Change any of them if you know better; a changed value is recorded as "entered".</p>
+      <div class="row">
+        <div><label for="parent">Parcel ULPIN <span class="hint">(placeholder shaped like the real one: state + district + village census code + parcel; DoLR issues the real number)</span></label><input id="parent" name="parent_ulpin" type="text" required pattern="\d{14}" inputmode="numeric"><p class="hint" id="parentHint"></p></div>
+        <div><label for="bno">Building number</label><input id="bno" name="building_no" type="number" min="1" max="99" value="1"></div>
+      </div>
+      <div class="row">
+        <div><label for="height">Height, m</label><input id="height" name="height_m" type="number" step="0.1" min="2"><p class="hint" id="heightHint"></p></div>
+        <div><label for="floors">Floors above ground</label><input id="floors" name="floors_official" type="number" min="1" max="99"><p class="hint" id="floorsHint"></p></div>
+      </div>
+      <div class="row">
+        <div><label for="units">Number of units</label><input id="units" name="units_official" type="number" min="1"><p class="hint" id="unitsHint"></p></div>
+        <div><label for="base">Basement levels</label><input id="base" name="basements" type="number" min="0" max="9" value="0"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>3. Optional: floor plans</legend>
+      <p class="hint">If you have plan images, the model draws the flats instead of equal strips.</p>
+      <div id="plans"></div>
+      <button type="button" class="secondary" id="addplan" style="margin-top:8px">Add a floor plan</button>
+    </fieldset>
+
+
+    <fieldset>
+      <legend>4. Ownership and underground utilities</legend>
+      <label for="owner">Owner or society name <span class="hint">(recorded as an LADM ownership right on every volume; per-flat owners can be attached later by ID)</span></label>
+      <input id="owner" name="owner" type="text" placeholder="e.g. Narayan Co-operative Housing Society">
+      <label>Underground utilities crossing the parcel <span class="hint">(GeoJSON lines with network_type, depth_m, diameter_m; each becomes a T-coded volume under building B00)</span></label>
+      <input name="utilities" type="file" accept=".geojson,.json">
+      <label>GNSS / CORS control points <span class="hint">(CSV: name, lat, lon from a Survey of India CORS-corrected receiver; shifts the outline onto surveyed positions)</span></label>
+      <input name="gnss" type="file" accept=".csv">
+    </fieldset>
+    <div style="margin-top:18px"><button type="submit">Generate estimated 3D ULPINs</button></div>
+  </form>
+  <section id="result" hidden aria-live="polite"></section>
+</main>
+
+<script src="intake.js"></script>
+<script>
+const map = L.map('map').setView([22.5505, 72.9312], 17);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap contributors' }).addTo(map);
+let outline = null;
+const auto = {};                                    // which boxes were auto-filled and not yet touched
+function fill(id, value, hint) { const el = $('#' + id); el.value = value ?? ''; el.classList.add('filled'); auto[id] = true; if (hint !== undefined) $('#' + id + 'Hint').textContent = hint; }
+['parent', 'height', 'floors', 'units'].forEach(id => $('#' + id).addEventListener('input', () => { auto[id] = false; $('#' + id).classList.remove('filled'); }));
+
+$('#search').onclick = async () => {
+  const q = $('#q').value.trim(); if (!q) return;
+  $('#hits').textContent = 'Searching…';
+  const hits = await (await fetch('/api/osm/search?q=' + encodeURIComponent(q))).json();
+  $('#hits').innerHTML = hits.length ? hits.map((h, i) => `<a href="#" data-i="${i}">${h.name}</a>`).join('<br>') : 'No place found.';
+  $('#hits').querySelectorAll('a').forEach(a => a.onclick = e => { e.preventDefault(); const h = hits[+a.dataset.i]; map.setView([h.lat, h.lon], 18); pick(h.lat, h.lon); });
+};
+$('#q').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); $('#search').click(); } });
+map.on('click', e => pick(e.latlng.lat, e.latlng.lng));
+
+async function pick(lat, lon) {
+  $('#picked').textContent = 'Looking up the building…';
+  const r = await fetch(`/api/osm/building?lat=${lat}&lon=${lon}`); const b = await r.json();
+  if (!r.ok) { $('#picked').textContent = b.detail; return; }
+  if (outline) map.removeLayer(outline);
+  outline = L.geoJSON(b.geometry, { style: { color: '#B8322F', weight: 2, fillOpacity: 0.25 } }).addTo(map);
+  map.fitBounds(outline.getBounds(), { maxZoom: 19 });
+  $('#footprint_json').value = JSON.stringify({ type: 'FeatureCollection', features: [{ type: 'Feature', properties: {}, geometry: b.geometry }] });
+
+  fill('parent', b.placeholder_ulpin);
+  const adm = b.admin ? `${b.admin.village} village, ${b.admin.subdistrict} taluka, ${b.admin.district} district, ${b.admin.state} (Census codes ${b.admin.state_code}/${b.admin.district_code}/${b.admin.village_code})` : 'outside the loaded village layer';
+  $('#parentHint').textContent = `${adm}. Placeholder = ${b.placeholder_how}.`;
+  const floors = b.levels || null;
+  if (b.height_m) { fill('height', b.height_m, 'Recorded on OpenStreetMap.'); $('#height_label').value = 'osm'; }
+  else if (floors) { fill('height', (floors * 3).toFixed(1), `${floors} floors on OpenStreetMap × 3 m.`); $('#height_label').value = 'osm_levels_x3'; }
+  else { fill('height', '', 'Nothing on the map. Left empty: 9 m will be assumed, or type the real height.'); $('#height_label').value = ''; }
+  if (floors) { fill('floors', floors, 'From OpenStreetMap volunteers.'); $('#floors_label').value = 'osm'; }
+  else { fill('floors', '', 'Not on the map. Left empty: our estimator fills it, labelled "estimated".'); $('#floors_label').value = ''; }
+  const areaM2 = polyArea(b.geometry), fl = floors || 3;
+  // a flat is ~90 m² gross; 99 per level is the ID format's ceiling; a footprint over ~3,000 m² is usually a whole complex mapped as one outline
+  const rawPerFloor = Math.max(1, Math.round(areaM2 / 90)), perFloor = Math.min(99, rawPerFloor);
+  let unitsHint = `${Math.round(areaM2)} m² ÷ 90 m² per flat ≈ ${perFloor} per floor × ${fl} floors. Assumed.`;
+  if (rawPerFloor > 99) unitsHint += ` Capped at 99 per level (the ID's limit).`;
+  if (areaM2 > 3000) unitsHint += ` ${Math.round(areaM2)} m² is large for one building: this outline may be a whole complex; if so, upload one block's outline instead.`;
+  fill('units', perFloor * fl, unitsHint); $('#units_label').value = 'assumed_from_area';
+  $('#source_note').value = `${b.name || 'Unnamed building'} (${b.building || 'building'}), ${b.source}` + (b.admin ? `; ${b.admin.village}, ${b.admin.district}` : '');
+  $('#admin_json').value = b.admin ? JSON.stringify(b.admin) : '';
+  $('#picked').textContent = `${b.name || 'Unnamed building'} (${b.building || 'building'}), ${b.source}. Boxes below are filled; press Generate, or correct anything you know.`;
+}
+$('#f').onsubmit = e => {
+  e.preventDefault();
+  if (!$('#footprint_json').value) { $('#result').hidden = false; $('#result').innerHTML = '<p class="bad">Pick a building on the map first.</p>'; return; }
+  ['height', 'floors', 'units'].forEach(id => { if (!auto[id]) $('#' + id + '_label') && ($('#' + id + '_label').value = 'entered'); });
+  submitForm(e.target, 'estimate');
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24486519917687", "parcel_of": "building28", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Vadodara", "subdistrict": "Vadodara Rural", "village": "Bapod (OG)", "village_code": "519917" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 73.253701768310279, 22.307726369264945 ], [ 73.253727640811022, 22.308128955410361 ], [ 73.253950663720772, 22.308116545727206 ], [ 73.253924790612245, 22.307713959569607 ], [ 73.253701768310279, 22.307726369264945 ] ] ] } }
+]
+}

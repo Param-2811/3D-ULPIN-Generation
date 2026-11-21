@@ -1,0 +1,13 @@
+# Phase 0-3 core. PyTorch / Ultralytics / laspy / open3d are Phase 4 only (large) — add then.
+geopandas
+shapely
+pyproj
+rasterio
+fastapi
+uvicorn
+scikit-learn
+psycopg[binary]
+pytest
+python-multipart
+laspy[lazrs]
+segment-geospatial

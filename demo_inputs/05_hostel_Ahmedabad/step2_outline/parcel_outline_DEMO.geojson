@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24474930074700", "parcel_of": "hostel", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Ahmadabad", "subdistrict": "Sabarmati", "village": "Vastrapur", "village_code": "930074" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.545472079452594, 23.042648418746982 ], [ 72.545498319721005, 23.042996347246543 ], [ 72.546003590359192, 23.042963708630989 ], [ 72.545977348780482, 23.042615780102668 ], [ 72.545472079452594, 23.042648418746982 ] ] ] } }
+]
+}

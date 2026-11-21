@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "outline",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Haverest Residency", "osm_id": 1378013689, "source": "OpenStreetMap (ODbL), local extract", "parent_ulpin": "24486930231822", "parent_ulpin_status": "placeholder: state+district+village census code+parcel seq; DoLR issues the real one", "building_no": 1, "state": "GUJARAT", "district": "Vadodara", "subdistrict": "Vadodara Rural", "village": "Gotri", "village_code": "930231" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 73.1351834, 22.3274519 ], [ 73.1357994, 22.3275825 ], [ 73.1359497, 22.3267375 ], [ 73.1356824, 22.3266249 ], [ 73.1353817, 22.3264984 ], [ 73.1351834, 22.3274519 ] ] ] } }
+]
+}

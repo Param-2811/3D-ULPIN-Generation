@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "parcel_outline_DEMO",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "parent_ulpin": "24474930048850", "parcel_of": "Orchard", "parcel_source": "DEMO: building outline + 6 m, squared. Real parcel boundaries come from BhuNaksha", "state": "GUJARAT", "district": "Ahmadabad", "subdistrict": "Daskroi", "village": "Jagatpur", "village_code": "930048" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 72.553995957589862, 23.114056411819487 ], [ 72.554033221910458, 23.114498262584256 ], [ 72.554408321215803, 23.114471196151843 ], [ 72.554371055723436, 23.114029346385241 ], [ 72.553995957589862, 23.114056411819487 ] ] ] } }
+]
+}
