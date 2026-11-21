@@ -7,7 +7,7 @@ Phase order revised 2026-09-13 — see the note at the top of docs/PROJECT_PLAN.
 - [x] Folder structure
 - [x] Python 3.11 venv + requirements.txt (`import geopandas, rasterio, shapely` → ok)
 - [x] .gitignore (data/, .venv/, weights)
-- [x] docs/PROGRESS.md, PROJECT_LOG.md
+- [x] docs/PROGRESS.md
 - [x] git init (no commit yet)
 
 ## Phase 1 — ULPIN generator

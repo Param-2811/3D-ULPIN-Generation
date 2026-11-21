@@ -17,7 +17,7 @@ criterion. If the exit criterion is not met, do not move on.
 ## Phase 0 — Setup ✅ (DB deferred)
 
 - Folder structure, Python 3.11 venv via uv, `requirements.txt`, `.gitignore`
-- `docs/PROGRESS.md`, `PROJECT_LOG.md`
+- `docs/PROGRESS.md`
 - PostgreSQL + PostGIS + SFCGAL → moved to Phase 7; not needed before then
 
 **Exit criterion:** `python -c "import geopandas, rasterio, shapely; print('ok')"` runs. ✅

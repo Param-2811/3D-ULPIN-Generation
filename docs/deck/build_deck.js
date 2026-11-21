@@ -287,7 +287,7 @@ function bullets(slide, items, o) {
   s.addText("Scaling to India", { x: 0.6, y: 4.6, w: 12.1, h: 0.45, fontFace: B, fontSize: 18, bold: true, color: INK, margin: 0 });
   s.addText("The pipeline never touches a city-wide dataset: one parcel, one building, one run. A state can process buildings as sanction plans arrive. Footprints and heights for India already exist in Google Open Buildings 2.5D; floor plans sit with every municipality's building-approval department. Modification of a building re-runs the pipeline; unchanged units keep their IDs because numbering is deterministic.",
     { x: 0.6, y: 5.1, w: 12.1, h: 1.6, fontFace: B, fontSize: 13.5, color: MUTE, margin: 0 });
-  foot(s, "Full plain-language history of every decision: PROJECT_LOG.md");
+  foot(s, "Design decisions and data sources: docs/PROJECT_PLAN.md, docs/DATA_SOURCES.md");
 }
 
 // 12 — Close (dark)
